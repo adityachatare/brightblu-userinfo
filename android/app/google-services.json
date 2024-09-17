@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "792622422285",
-    "project_id": "brightblu-task2",
-    "storage_bucket": "brightblu-task2.appspot.com"
+    "project_number": "932642473558",
+    "project_id": "brightblutask2",
+    "storage_bucket": "brightblutask2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:792622422285:android:4ca4c3e536ce60234e3844",
+        "mobilesdk_app_id": "1:932642473558:android:dc78ee99a1a87362a85df7",
         "android_client_info": {
           "package_name": "com.brightblu.task2"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyANHwcwUsgynjNenEB8CyQNShLysA57s9E"
+          "current_key": "AIzaSyD6DBvTdZdAe_QG4dUqny3ER2UV67kEdk4"
         }
       ],
       "services": {

@@ -84,7 +84,7 @@ class _UserInfoFormState extends State<UserInfoForm> {
 
   Future<void> _addUserData(Map<String, String> userData) async {
     Uint8List pdfData = await _generatePDFInMemory(userData);
-    await _uploadToSFTP(pdfData, userData['name']!, host);
+    await _uploadToSFTP(pdfData, userData['name']!);
 
     var docRef =
         await FirebaseFirestore.instance.collection('users').add(userData);
@@ -108,7 +108,7 @@ class _UserInfoFormState extends State<UserInfoForm> {
         .update(userData);
 
     Uint8List newPdfData = await _generatePDFInMemory(userData);
-    await _uploadToSFTP(newPdfData, userData['name']!, host);
+    await _uploadToSFTP(newPdfData, userData['name']!);
 
     print('User data and PDF updated.');
     Fluttertoast.showToast(
@@ -166,12 +166,11 @@ class _UserInfoFormState extends State<UserInfoForm> {
     return pdf.save();
   }
 
-  Future<void> _uploadToSFTP(
-      Uint8List pdfData, String username, String host) async {
+  Future<void> _uploadToSFTP(Uint8List pdfData, String username) async {
     final socket = await SSHSocket.connect(host, portNo);
     final client = SSHClient(
       socket,
-      username: username,
+      username: userid,
       onPasswordRequest: () => password,
     );
 
