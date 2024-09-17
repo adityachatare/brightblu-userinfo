@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'dart:async';
 import 'package:dartssh2/dartssh2.dart';
+import 'package:task_2/attributes.dart';
 
 class UserInfoForm extends StatefulWidget {
   @override
@@ -166,11 +167,11 @@ class _UserInfoFormState extends State<UserInfoForm> {
   }
 
   Future<void> _uploadToSFTP(Uint8List pdfData, String username) async {
-    final socket = await SSHSocket.connect('ap-southeast-1.sftpcloud.io', 22);
+    final socket = await SSHSocket.connect('', 0);
     final client = SSHClient(
       socket,
-      username: 'flutterDev',
-      onPasswordRequest: () => 'qLvS8YEjqZBpCRjnVvzBT9SvYdYtNFEE',
+      username: '',
+      onPasswordRequest: () => '',
     );
 
     try {
@@ -199,11 +200,11 @@ class _UserInfoFormState extends State<UserInfoForm> {
   }
 
   Future<void> _removePDFFromSFTP(String username) async {
-    final socket = await SSHSocket.connect('ap-southeast-1.sftpcloud.io', 22);
+    final socket = await SSHSocket.connect('', 0);
     final client = SSHClient(
       socket,
-      username: 'flutterDev',
-      onPasswordRequest: () => 'qLvS8YEjqZBpCRjnVvzBT9SvYdYtNFEE',
+      username: '',
+      onPasswordRequest: () => '',
     );
 
     try {
