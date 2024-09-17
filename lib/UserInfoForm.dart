@@ -203,7 +203,7 @@ class _UserInfoFormState extends State<UserInfoForm> {
     final socket = await SSHSocket.connect(host, portNo);
     final client = SSHClient(
       socket,
-      username: username,
+      username: userid,
       onPasswordRequest: () => password,
     );
 
