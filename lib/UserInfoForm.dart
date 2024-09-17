@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'dart:async';
 import 'package:dartssh2/dartssh2.dart';
-import 'package:task_2/attributes.dart';
 
 class UserInfoForm extends StatefulWidget {
   @override
