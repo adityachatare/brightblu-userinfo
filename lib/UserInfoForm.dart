@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'dart:async';
 import 'package:dartssh2/dartssh2.dart';
+import 'package:task_2/attributes.dart';
 
 class UserInfoForm extends StatefulWidget {
   @override
@@ -83,7 +84,7 @@ class _UserInfoFormState extends State<UserInfoForm> {
 
   Future<void> _addUserData(Map<String, String> userData) async {
     Uint8List pdfData = await _generatePDFInMemory(userData);
-    await _uploadToSFTP(pdfData, userData['name']!);
+    await _uploadToSFTP(pdfData, userData['name']!, host);
 
     var docRef =
         await FirebaseFirestore.instance.collection('users').add(userData);
@@ -107,7 +108,7 @@ class _UserInfoFormState extends State<UserInfoForm> {
         .update(userData);
 
     Uint8List newPdfData = await _generatePDFInMemory(userData);
-    await _uploadToSFTP(newPdfData, userData['name']!);
+    await _uploadToSFTP(newPdfData, userData['name']!, host);
 
     print('User data and PDF updated.');
     Fluttertoast.showToast(
@@ -165,12 +166,13 @@ class _UserInfoFormState extends State<UserInfoForm> {
     return pdf.save();
   }
 
-  Future<void> _uploadToSFTP(Uint8List pdfData, String username) async {
-    final socket = await SSHSocket.connect('', 0);
+  Future<void> _uploadToSFTP(
+      Uint8List pdfData, String username, String host) async {
+    final socket = await SSHSocket.connect(host, portNo);
     final client = SSHClient(
       socket,
-      username: '',
-      onPasswordRequest: () => '',
+      username: username,
+      onPasswordRequest: () => password,
     );
 
     try {
@@ -199,11 +201,11 @@ class _UserInfoFormState extends State<UserInfoForm> {
   }
 
   Future<void> _removePDFFromSFTP(String username) async {
-    final socket = await SSHSocket.connect('', 0);
+    final socket = await SSHSocket.connect(host, portNo);
     final client = SSHClient(
       socket,
-      username: '',
-      onPasswordRequest: () => '',
+      username: username,
+      onPasswordRequest: () => password,
     );
 
     try {
